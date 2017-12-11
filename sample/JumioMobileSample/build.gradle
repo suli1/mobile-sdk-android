@@ -1,15 +1,17 @@
 buildscript {
 	repositories {
 		jcenter()
+        google()
 	}
 	dependencies {
-		classpath "com.android.tools.build:gradle:2.3.3"
+		classpath "com.android.tools.build:gradle:3.0.1"
 	}
 }
 apply plugin: 'com.android.application'
 
 repositories {
 	jcenter()
+	google()
 	maven { url 'https://maven.google.com/' }
 	maven { url 'http://mobile-sdk.jumio.com' }
 }
@@ -46,11 +48,19 @@ dependencies {
 	compile "com.google.android.gms:play-services-vision:11.4.0"
 
 	compile fileTree(dir: 'libs', include: '*.jar')
+
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 android {
 	compileSdkVersion 26
 	buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        multiDexEnabled true
+    }
 
 	lintOptions {
 		abortOnError false
